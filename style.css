@@ -121,7 +121,7 @@ h1 {
 .completed {
 	font-size: 12px;
 	font-style: italic;
-	color: car(--light-dark);
+	color: var(--light-dark);
 	text-decoration: line-through;
 }
 
