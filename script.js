@@ -48,6 +48,7 @@ const addNewTask = () => {
 
 		todoInput.value = '';
 		alertInfo.textContent = '';
+		createToolsArea();
 	} else {
 		alertInfo.textContent = 'Wpisz treść zadania!';
 	}
@@ -57,6 +58,32 @@ const enterCheck = (e) => {
 	if (e.code === 'Enter' || e.key === 'Enter') {
 		addNewTask();
 	}
+};
+
+const createToolsArea = () => {
+	const toolsPanel = document.createElement('div');
+	toolsPanel.classList.add('tools');
+	newTask.append(toolsPanel);
+
+	const completeBtn = document.createElement('button');
+	completeBtn.classList.add('complete');
+	completeBtn.innerHTML = '<i class="fas fa-check"></i>';
+
+	const editBtn = document.createElement('button');
+	editBtn.classList.add('edit');
+	editBtn.textContent = 'EDIT';
+
+	const deleteBtn = document.createElement('button');
+	deleteBtn.classList.add('delete');
+	deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+
+	toolsPanel.append(completeBtn, editBtn, deleteBtn);
+
+	/* <div class="tools">
+<button class="complete"><i class="fas fa-check"></i></button>
+<button class="edit">EDIT</button>
+<button class="delete"><i class="fas fa-times"></i></button>
+</div> */
 };
 
 document.addEventListener('DOMContentLoaded', main);
