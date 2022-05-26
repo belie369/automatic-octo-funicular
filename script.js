@@ -22,7 +22,7 @@ const prepareDOMElements = () => {
 	todoInput = document.querySelector('.todo-input');
 	alertInfo = document.querySelector('.alert-info');
 	addBtn = document.querySelector('.add-btn');
-	ulList = document.querySelector('.todolist ul');
+	ulList = document.querySelector('.todo-list ul');
 	allTasks = document.getElementsByTagName('li');
 
 	popup = document.querySelector('.popup');
@@ -35,10 +35,28 @@ const prepareDOMElements = () => {
 
 const prepareDOMEvents = () => {
 	addBtn.addEventListener('click', addNewTask);
+	todoInput.addEventListener('keyup', enterCheck);
 };
 
 const addNewTask = () => {
-	console.log('ok');
+	if (todoInput.value !== '') {
+		idNumber++;
+		newTask = document.createElement('li');
+		newTask.textContent = todoInput.value;
+		newTask.setAttribute('id', `todo-${idNumber}`);
+		ulList.before(newTask);
+
+		todoInput.value = '';
+		alertInfo.textContent = '';
+	} else {
+		alertInfo.textContent = 'Wpisz treść zadania!';
+	}
+};
+
+const enterCheck = (e) => {
+	if (e.code === 'Enter' || e.key === 'Enter') {
+		addNewTask();
+	}
 };
 
 document.addEventListener('DOMContentLoaded', main);
